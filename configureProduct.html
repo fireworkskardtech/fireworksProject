@@ -76,23 +76,25 @@
                                         </div>
 
 
-                                          <input id="itemcode" type="text" name="itemcode" placeholder="Item Code"/><button id="btnGetUnits" class="button is-success" onclick="returnCurrentUnit()">Get Units</button><br/>
-                                          <div id="showunitsdiv"></div>
-                                          <input id="wholesalepercent" type="text" name="wholesalepercent" placeholder="Wholesale Percent"/>
-                                          <input id="semiwholesalepercent" type="text" name="semiwholesalepercent" placeholder="Semi-Wholesale Percent"/>
-                                          <input id="retailpercent" type="text" name="retailpercent" placeholder="Retail Percent"/>
-                                          <button id="btnProductSave" class="button is-success">Save changes</button>
+                                          Item code: <input id="itemcode" type="text" name="itemcode" placeholder="Item Code"/><button id="btnGetUnits" class="button is-success" onclick="returnCurrentUnit()">Get Units</button><br/>
                                           <div id="autocompletetagshere"></div>
+                                          <div id="showunitsdiv"></div>
+                                          Price: Rs<input id="productconfigprice" type="text" name="productconfigprice" placeholder="Price"/>/- <br/>
+                                          Wholesale :<input id="wholesalepercent" type="text" name="wholesalepercent" placeholder="Wholesale Percent"/>%
+                                          Semi-Wholesale :<input id="semiwholesalepercent" type="text" name="semiwholesalepercent" placeholder="Semi-Wholesale Percent"/>%
+                                          Retail :<input id="retailpercent" type="text" name="retailpercent" placeholder="Retail Percent"/>%
+                                          <button id="btnProductConfigSave" class="button is-success">Save changes</button>
+
 <div>
                                           <table id="ProductConfigureTable" class="pure-table pure-table-bordered">
                                             <thead>
                                       <tr>
                                         <th>Item Code</th>
+                                        <th>Unit</th>
+                                        <th>Price</th>
                                         <th>whole Percent</th>
                                         <th>Semi-Wholesale Percent</th>
                                         <th>Retail Percent</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
                                       </tr>
                                       </thead>
                                       <tbody>
