@@ -906,12 +906,6 @@ function new_config_product_CaseBoxPiece(price, wholesalepercent, semiwholesalep
     piece: piece,
     box: box
   });
-  database.ref('inventory/' + itemcode).set({
-    itemcode: itemcode,
-    case: "0",
-    piece: "0",
-    box: "0"
-  });
 }
 
 function new_config_product_CasePiece(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, piece, itemcode) {
@@ -924,11 +918,6 @@ function new_config_product_CasePiece(price, wholesalepercent, semiwholesaleperc
     case: caseunit,
     piece: piece
   });
-  database.ref('inventory/' + itemcode).set({
-    itemcode: itemcode,
-    case: "0",
-    piece: "0"
-  });
 }
 function new_config_product_CasePackets(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, packets, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -940,11 +929,6 @@ function new_config_product_CasePackets(price, wholesalepercent, semiwholesalepe
     case: caseunit,
     packets: packets
   });
-  database.ref('inventory/' + itemcode).set({
-    itemcode: itemcode,
-    case: "0",
-    packets: "0"
-  });
 }
 function new_config_product_CaseTin(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, tin, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -955,11 +939,6 @@ function new_config_product_CaseTin(price, wholesalepercent, semiwholesalepercen
     retailpercent: retailpercent,
     case: caseunit,
     tin: tin
-  });
-  database.ref('inventory/' + itemcode).set({
-    itemcode: itemcode,
-    case: "0",
-    tin: "0"
   });
 }
 function new_config_product_BundleKattaBox(price, wholesalepercent, semiwholesalepercent, retailpercent, bundle, katta, box, itemcode) {
@@ -973,12 +952,6 @@ function new_config_product_BundleKattaBox(price, wholesalepercent, semiwholesal
     katta: katta,
     box: box
   });
-  database.ref('inventory/' + itemcode).set({
-    itemcode: itemcode,
-    bundle: "0",
-    katta: "0",
-    box:"0"
-  });
 }
 function new_config_product_BundleBox(price, wholesalepercent, semiwholesalepercent, retailpercent, bundle, box, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -990,11 +963,6 @@ function new_config_product_BundleBox(price, wholesalepercent, semiwholesaleperc
     bundle: bundle,
     box: box
   });
-  database.ref('inventory/' + itemcode).set({
-    itemcode: itemcode,
-    bundle: "0",
-    box: "0"
-  });
 }
 function new_config_product_BagKgs(price, wholesalepercent, semiwholesalepercent, retailpercent, bag, kgs, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -1005,11 +973,6 @@ function new_config_product_BagKgs(price, wholesalepercent, semiwholesalepercent
     retailpercent: retailpercent,
     bag: bag,
     kgs: kgs
-  });
-  database.ref('inventory/' + itemcode).set({
-    itemcode: itemcode,
-    bag: "0",
-    kgs: "0"
   });
 }
 function new_config_product_CaseCentKatta(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, centunit, katta, itemcode) {
@@ -1023,12 +986,6 @@ function new_config_product_CaseCentKatta(price, wholesalepercent, semiwholesale
     katta: katta,
     cent: centunit
   });
-  database.ref('inventory/' + itemcode).set({
-    itemcode: itemcode,
-    case: "0",
-    katta: "0",
-    cent:"0"
-  });
 }
 function new_config_product_CaseTube(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, tube, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -1039,11 +996,6 @@ function new_config_product_CaseTube(price, wholesalepercent, semiwholesaleperce
     retailpercent: retailpercent,
     case: caseunit,
     tube: tube
-  });
-  database.ref('inventory/' + itemcode).set({
-    itemcode: itemcode,
-    case: "0",
-    tube: "0"
   });
 }
 function new_config_product_CaseCone(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, cone, itemcode) {
@@ -1057,11 +1009,7 @@ function new_config_product_CaseCone(price, wholesalepercent, semiwholesaleperce
     case: caseunit,
     cone: cone
   });
-  database.ref('inventory/' + itemcode).set({
-    itemcode: itemcode,
-    case: "0",
-    cone: "0"
-  });
+
 }
 function new_config_product_BagPackets(price, wholesalepercent, semiwholesalepercent, retailpercent, bag, packets, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -1073,11 +1021,7 @@ function new_config_product_BagPackets(price, wholesalepercent, semiwholesaleper
     bag: bag,
     packets: packets
   });
-  database.ref('inventory/' + itemcode).set({
-    itemcode: itemcode,
-    bag: "0",
-    packets: "0"
-  });
+
 }
 function new_config_product_BagPieces(price, wholesalepercent, semiwholesalepercent, retailpercent, bag, piece, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -1089,11 +1033,7 @@ function new_config_product_BagPieces(price, wholesalepercent, semiwholesaleperc
     bag: bag,
     piece: piece
   });
-  database.ref('inventory/' + itemcode).set({
-    itemcode: itemcode,
-    bag: "0",
-    piece: "0"
-  });
+
 }
 
 /** configure product logic ends here **/
