@@ -547,6 +547,7 @@ function new_product_data(name, itemcode, companyname, category, subcategory, un
     unit: unit,
     comment: comment
   });
+
 }
 function update_product_data(name, itemcode, companyname, category, subcategory, unit, comment) {
   database.ref('products/' + itemcode).update({
@@ -611,118 +612,106 @@ function updateConfigProductTableInstantly(data) {
   console.log("UCPTI" + data.val().category);
   switch (data.val().unit) {
     case "Case-Box-Piece":
-    if ($('#ProductConfigureTable').find('#'+data.val().itemcode).length > 0) {
-      $("#ProductConfigureTable #" + data.val().itemcode).html('<th>' + data.val().itemcode + '</th><th>Case: ' + data.val().case + ' Box: ' + data.val().box +' Piece: ' + data.val().piece + '</th><th>' + data.val().price + '</th><th>' + data.val().wholesalepercent + '</th><th>' + data.val().semiwholesalepercent + '</th><th>' + data.val().retailpercent + '</th>');
+      if ($('#ProductConfigureTable').find('#' + data.val().itemcode).length > 0) {
+        $("#ProductConfigureTable #" + data.val().itemcode).html('<th>' + data.val().itemcode + '</th><th>Case: ' + data.val().case + ' Box: ' + data.val().box + ' Piece: ' + data.val().piece + '</th><th>' + data.val().price + '</th><th>' + data.val().wholesalepercent + '</th><th>' + data.val().semiwholesalepercent + '</th><th>' + data.val().retailpercent + '</th>');
 
-    }
-    else{
-      add_config_product_CaseBoxPiece_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case, data.val().box, data.val().piece, data.val().itemcode);
-    }
+      } else {
+        add_config_product_CaseBoxPiece_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case, data.val().box, data.val().piece, data.val().itemcode);
+      }
       break;
     case "Case-Piece":
-    if ($('#ProductConfigureTable').find('#'+data.val().itemcode).length > 0) {
-      $("#ProductConfigureTable #" + data.val().itemcode).html('<th>' + data.val().itemcode + '</th><th>Case: ' + data.val().case + ' Piece: ' + data.val().piece + '</th><th>' + data.val().price + '</th><th>' + data.val().wholesalepercent + '</th><th>' + data.val().semiwholesalepercent + '</th><th>' + data.val().retailpercent + '</th>');
-    }
-    else{
-      console.log("table row "+data.val().itemcode);
-      add_config_product_CasePiece_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case,data.val().piece, data.val().itemcode);
-    }
+      if ($('#ProductConfigureTable').find('#' + data.val().itemcode).length > 0) {
+        $("#ProductConfigureTable #" + data.val().itemcode).html('<th>' + data.val().itemcode + '</th><th>Case: ' + data.val().case + ' Piece: ' + data.val().piece + '</th><th>' + data.val().price + '</th><th>' + data.val().wholesalepercent + '</th><th>' + data.val().semiwholesalepercent + '</th><th>' + data.val().retailpercent + '</th>');
+      } else {
+        console.log("table row " + data.val().itemcode);
+        add_config_product_CasePiece_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case, data.val().piece, data.val().itemcode);
+      }
       console.log("its c-p");
       break;
     case "Case-Packets":
       console.log("its c-pkts");
-      if ($('#ProductConfigureTable').find('#'+data.val().itemcode).length > 0) {
+      if ($('#ProductConfigureTable').find('#' + data.val().itemcode).length > 0) {
         $("#ProductConfigureTable #" + data.val().itemcode).html('<th>' + data.val().itemcode + '</th><th>Case: ' + data.val().case + ' Packets: ' + data.val().packets + '</th><th>' + data.val().price + '</th><th>' + data.val().wholesalepercent + '</th><th>' + data.val().semiwholesalepercent + '</th><th>' + data.val().retailpercent + '</th>');
 
-      }
-      else{
-        add_config_product_CasePackets_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case,data.val().packets, data.val().itemcode);
+      } else {
+        add_config_product_CasePackets_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case, data.val().packets, data.val().itemcode);
       }
       break;
     case "Case-Tin":
       console.log("its c-t");
-      if ($('#ProductConfigureTable').find('#'+data.val().itemcode).length > 0) {
+      if ($('#ProductConfigureTable').find('#' + data.val().itemcode).length > 0) {
         $("#ProductConfigureTable #" + data.val().itemcode).html('<th>' + data.val().itemcode + '</th><th>Case: ' + data.val().case + ' Tin: ' + data.val().tin + '</th><th>' + data.val().price + '</th><th>' + data.val().wholesalepercent + '</th><th>' + data.val().semiwholesalepercent + '</th><th>' + data.val().retailpercent + '</th>');
-      }
-      else{
-        add_config_product_CaseTin_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case,data.val().tin, data.val().itemcode);
+      } else {
+        add_config_product_CaseTin_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case, data.val().tin, data.val().itemcode);
       }
       break;
     case "Bundle-Katta-Boxes":
       console.log("its b-k-b");
-      if ($('#ProductConfigureTable').find('#'+data.val().itemcode).length > 0) {
-        $("#ProductConfigureTable #" + data.val().itemcode).html('<th>' + data.val().itemcode + '</th><th>Bundle: ' + data.val().bundle + ' Katta: ' + data.val().katta +' Box: ' + data.val().box + '</th><th>' + data.val().price + '</th><th>' + data.val().wholesalepercent + '</th><th>' + data.val().semiwholesalepercent + '</th><th>' + data.val().retailpercent + '</th>');
-      }
-      else{
+      if ($('#ProductConfigureTable').find('#' + data.val().itemcode).length > 0) {
+        $("#ProductConfigureTable #" + data.val().itemcode).html('<th>' + data.val().itemcode + '</th><th>Bundle: ' + data.val().bundle + ' Katta: ' + data.val().katta + ' Box: ' + data.val().box + '</th><th>' + data.val().price + '</th><th>' + data.val().wholesalepercent + '</th><th>' + data.val().semiwholesalepercent + '</th><th>' + data.val().retailpercent + '</th>');
+      } else {
         add_config_product_BundleKattaBox_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().bundle, data.val().katta, data.val().box, data.val().itemcode);
-        }
+      }
       break;
     case "Bundle-Boxes":
       console.log("its b-b");
-      if ($('#ProductConfigureTable').find('#'+data.val().itemcode).length > 0) {
+      if ($('#ProductConfigureTable').find('#' + data.val().itemcode).length > 0) {
         $("#ProductConfigureTable #" + data.val().itemcode).html('<th>' + data.val().itemcode + '</th><th>Bundle: ' + data.val().bundle + ' Box: ' + data.val().box + '</th><th>' + data.val().price + '</th><th>' + data.val().wholesalepercent + '</th><th>' + data.val().semiwholesalepercent + '</th><th>' + data.val().retailpercent + '</th>');
 
-      }
-      else{
-        add_config_product_BundleBox_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().bundle,data.val().box, data.val().itemcode);
+      } else {
+        add_config_product_BundleBox_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().bundle, data.val().box, data.val().itemcode);
 
       }
       break;
     case "Bag-Kgs":
       console.log("its bag-kgs");
-      if ($('#ProductConfigureTable').find('#'+data.val().itemcode).length > 0) {
+      if ($('#ProductConfigureTable').find('#' + data.val().itemcode).length > 0) {
         $("#ProductConfigureTable #" + data.val().itemcode).html('<th>' + data.val().itemcode + '</th><th>Bag: ' + data.val().bag + ' Kgs: ' + data.val().kgs + '</th><th>' + data.val().price + '</th><th>' + data.val().wholesalepercent + '</th><th>' + data.val().semiwholesalepercent + '</th><th>' + data.val().retailpercent + '</th>');
-      }
-      else{
-        add_config_product_BagKgs_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().bag,data.val().kgs, data.val().itemcode);
+      } else {
+        add_config_product_BagKgs_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().bag, data.val().kgs, data.val().itemcode);
       }
       break;
     case "Case-Cent-Katta":
       console.log("Its c-c-k");
-      if ($('#ProductConfigureTable').find('#'+data.val().itemcode).length > 0) {
-        $("#ProductConfigureTable #" + data.val().itemcode).html('<th>' + data.val().itemcode + '</th><th>Case: ' + data.val().case + ' Cent: ' + data.val().cent +' Katta: ' + data.val().katta + '</th><th>' + data.val().price + '</th><th>' + data.val().wholesalepercent + '</th><th>' + data.val().semiwholesalepercent + '</th><th>' + data.val().retailpercent + '</th>');
-      }
-      else{
+      if ($('#ProductConfigureTable').find('#' + data.val().itemcode).length > 0) {
+        $("#ProductConfigureTable #" + data.val().itemcode).html('<th>' + data.val().itemcode + '</th><th>Case: ' + data.val().case + ' Cent: ' + data.val().cent + ' Katta: ' + data.val().katta + '</th><th>' + data.val().price + '</th><th>' + data.val().wholesalepercent + '</th><th>' + data.val().semiwholesalepercent + '</th><th>' + data.val().retailpercent + '</th>');
+      } else {
         add_config_product_CaseCentKatta_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case, data.val().cent, data.val().katta, data.val().itemcode);
-        }
+      }
       break;
     case "Case-Tube":
       console.log("its c-tb");
-      if ($('#ProductConfigureTable').find('#'+data.val().itemcode).length > 0) {
+      if ($('#ProductConfigureTable').find('#' + data.val().itemcode).length > 0) {
         $("#ProductConfigureTable #" + data.val().itemcode).html('<th>' + data.val().itemcode + '</th><th>Case: ' + data.val().case + ' Tube: ' + data.val().tube + '</th><th>' + data.val().price + '</th><th>' + data.val().wholesalepercent + '</th><th>' + data.val().semiwholesalepercent + '</th><th>' + data.val().retailpercent + '</th>');
+      } else {
+        add_config_product_CaseTube_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case, data.val().tube, data.val().itemcode);
       }
-      else{
-        add_config_product_CaseTube_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case,data.val().tube, data.val().itemcode);
-        }
       break;
     case "Case-Cone":
       console.log("its c-c");
-      if ($('#ProductConfigureTable').find('#'+data.val().itemcode).length > 0) {
+      if ($('#ProductConfigureTable').find('#' + data.val().itemcode).length > 0) {
         $("#ProductConfigureTable #" + data.val().itemcode).html('<th>' + data.val().itemcode + '</th><th>Case: ' + data.val().case + ' Cone: ' + data.val().cone + '</th><th>' + data.val().price + '</th><th>' + data.val().wholesalepercent + '</th><th>' + data.val().semiwholesalepercent + '</th><th>' + data.val().retailpercent + '</th>');
 
-      }
-      else{
-        console.log("table row "+data.val().itemcode);
-        add_config_product_CaseCone_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case,data.val().cone, data.val().itemcode);
+      } else {
+        console.log("table row " + data.val().itemcode);
+        add_config_product_CaseCone_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case, data.val().cone, data.val().itemcode);
       }
       break;
     case "Bag-Packets":
       console.log("its b-pkts");
-      if ($('#ProductConfigureTable').find('#'+data.val().itemcode).length > 0) {
+      if ($('#ProductConfigureTable').find('#' + data.val().itemcode).length > 0) {
         $("#ProductConfigureTable #" + data.val().itemcode).html('<th>' + data.val().itemcode + '</th><th>Bag: ' + data.val().bag + ' Packets: ' + data.val().packets + '</th><th>' + data.val().price + '</th><th>' + data.val().wholesalepercent + '</th><th>' + data.val().semiwholesalepercent + '</th><th>' + data.val().retailpercent + '</th>');
 
+      } else {
+        add_config_product_BagPackets_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().bag, data.val().packets, data.val().itemcode);
       }
-      else{
-        add_config_product_BagPackets_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().bag,data.val().packets, data.val().itemcode);
-        }
       break;
     case "Bag-Pieces":
       console.log("its b-pcs");
-      if ($('#ProductConfigureTable').find('#'+data.val().itemcode).length > 0) {
-        $("#ProductConfigureTable #" + data.val().itemcode).html('<th>' + data.val().itemcode + '</th><th>Bag: ' + data.val().bag + ' Pieces: ' + data.val().pieces + '</th><th>' + data.val().price + '</th><th>' + data.val().wholesalepercent + '</th><th>' + data.val().semiwholesalepercent + '</th><th>' + data.val().retailpercent + '</th>');
-      }
-      else{
-              add_config_product_BagPieces_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().bag,data.val().pieces, data.val().itemcode);
+      if ($('#ProductConfigureTable').find('#' + data.val().itemcode).length > 0) {
+        $("#ProductConfigureTable #" + data.val().itemcode).html('<th>' + data.val().itemcode + '</th><th>Bag: ' + data.val().bag + ' Pieces: ' + data.val().piece + '</th><th>' + data.val().price + '</th><th>' + data.val().wholesalepercent + '</th><th>' + data.val().semiwholesalepercent + '</th><th>' + data.val().retailpercent + '</th>');
+      } else {
+        add_config_product_BagPieces_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().bag, data.val().piece, data.val().itemcode);
       }
       break;
     default:
@@ -743,57 +732,57 @@ $("#btnProductConfigSave").click(function() {
       });
       break;
     case "Case-Packets":
-    database.ref('products').once("value").then(function(snapshot) {
-      new_config_product_CasePackets($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#case").val(), $("#packets").val(), $("#itemcode").val());
-    });
+      database.ref('products').once("value").then(function(snapshot) {
+        new_config_product_CasePackets($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#case").val(), $("#packets").val(), $("#itemcode").val());
+      });
       break;
     case "Case-Tin":
-    database.ref('products').once("value").then(function(snapshot) {
-      new_config_product_CaseTin($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#case").val(), $("#tin").val(), $("#itemcode").val());
-    });
+      database.ref('products').once("value").then(function(snapshot) {
+        new_config_product_CaseTin($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#case").val(), $("#tin").val(), $("#itemcode").val());
+      });
       break;
     case "Bundle-Katta-Boxes":
-    database.ref('products').once("value").then(function(snapshot) {
-      new_config_product_BundleKattaBox($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#bundle").val(), $("#katta").val(), $("#box").val(), $("#itemcode").val());
-    });
+      database.ref('products').once("value").then(function(snapshot) {
+        new_config_product_BundleKattaBox($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#bundle").val(), $("#katta").val(), $("#box").val(), $("#itemcode").val());
+      });
       break;
     case "Bundle-Boxes":
-    database.ref('products').once("value").then(function(snapshot) {
-      new_config_product_BundleBox($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#bundle").val(), $("#box").val(), $("#itemcode").val());
-    });
+      database.ref('products').once("value").then(function(snapshot) {
+        new_config_product_BundleBox($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#bundle").val(), $("#box").val(), $("#itemcode").val());
+      });
       break;
     case "Bag-Kgs":
-    database.ref('products').once("value").then(function(snapshot) {
-      new_config_product_BagKgs($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#bag").val(), $("#kgs").val(), $("#itemcode").val());
-    });
+      database.ref('products').once("value").then(function(snapshot) {
+        new_config_product_BagKgs($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#bag").val(), $("#kgs").val(), $("#itemcode").val());
+      });
       break;
     case "Case-Cent-Katta":
-    database.ref('products').once("value").then(function(snapshot) {
-      new_config_product_CaseCentKatta($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#case").val(), $("#cent").val(), $("#katta").val(), $("#itemcode").val());
-    });
+      database.ref('products').once("value").then(function(snapshot) {
+        new_config_product_CaseCentKatta($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#case").val(), $("#cent").val(), $("#katta").val(), $("#itemcode").val());
+      });
       break;
     case "Case-Tube":
-    database.ref('products').once("value").then(function(snapshot) {
-      new_config_product_CaseTube($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#case").val(), $("#tube").val(), $("#itemcode").val());
-    });
+      database.ref('products').once("value").then(function(snapshot) {
+        new_config_product_CaseTube($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#case").val(), $("#tube").val(), $("#itemcode").val());
+      });
       break;
     case "Case-Cone":
-    /*database.ref('products').once("value").then(function(snapshot) {
+      /*database.ref('products').once("value").then(function(snapshot) {
       new_config_product_CaseCone($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#case").val(), $("#cone").val(), $("#itemcode").val());
     });*/
-    new_config_product_CaseCone($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#case").val(), $("#cone").val(), $("#itemcode").val());
-    //add_config_product_CaseCone_data_table($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#case").val(), $("#cone").val(), $("#itemcode").val());
-//$('#ProductConfigureTable').html(response);
+      new_config_product_CaseCone($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#case").val(), $("#cone").val(), $("#itemcode").val());
+      //add_config_product_CaseCone_data_table($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#case").val(), $("#cone").val(), $("#itemcode").val());
+      //$('#ProductConfigureTable').html(response);
       break;
     case "Bag-Packets":
-    database.ref('products').once("value").then(function(snapshot) {
-      new_config_product_BagPackets($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#bag").val(), $("#packets").val(), $("#itemcode").val());
-    });
+      database.ref('products').once("value").then(function(snapshot) {
+        new_config_product_BagPackets($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#bag").val(), $("#packets").val(), $("#itemcode").val());
+      });
       break;
     case "Bag-Pieces":
-    database.ref('products').once("value").then(function(snapshot) {
-      new_config_product_BagPieces($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#bag").val(), $("#piece").val(), $("#itemcode").val());
-    });
+      database.ref('products').once("value").then(function(snapshot) {
+        new_config_product_BagPieces($("#productconfigprice").val(), $("#wholesalepercent").val(), $("#semiwholesalepercent").val(), $("#retailpercent").val(), $("#bag").val(), $("#piece").val(), $("#itemcode").val());
+      });
       break;
     default:
       console.log("No package found");
@@ -804,66 +793,66 @@ $("#btnProductConfigSave").click(function() {
 database.ref('products').on('child_added', function(data) {
   switch (data.val().unit) {
     case "Case-Box-Piece":
-    if(data.val().box != undefined){
-      add_config_product_CaseBoxPiece_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case, data.val().box, data.val().piece, data.val().itemcode);
-    }
+      if (data.val().box != undefined) {
+        add_config_product_CaseBoxPiece_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case, data.val().box, data.val().piece, data.val().itemcode);
+      }
       break;
     case "Case-Piece":
-    console.log("case,piece "+data.val().piece);
-    if(data.val().piece != undefined){
-      console.log("in if");
-      add_config_product_CasePiece_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case,data.val().piece, data.val().itemcode);
-    }
+      console.log("case,piece " + data.val().piece);
+      if (data.val().piece != undefined) {
+        console.log("in if");
+        add_config_product_CasePiece_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case, data.val().piece, data.val().itemcode);
+      }
       break;
     case "Case-Packets":
-    if(data.val().packets != undefined){
-      add_config_product_CasePackets_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case,data.val().packets, data.val().itemcode);
-    }
+      if (data.val().packets != undefined) {
+        add_config_product_CasePackets_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case, data.val().packets, data.val().itemcode);
+      }
       break;
     case "Case-Tin":
-    if(data.val().tin != undefined){
-      add_config_product_CaseTin_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case,data.val().tin, data.val().itemcode);
-    }
+      if (data.val().tin != undefined) {
+        add_config_product_CaseTin_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case, data.val().tin, data.val().itemcode);
+      }
       break;
     case "Bundle-Katta-Boxes":
-      if(data.val().box != undefined){
+      if (data.val().box != undefined) {
         add_config_product_BundleKattaBox_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().bundle, data.val().katta, data.val().box, data.val().itemcode);
       }
       break;
     case "Bundle-Boxes":
-      if(data.val().box != undefined){
-        add_config_product_BundleBox_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().bundle,data.val().box, data.val().itemcode);
+      if (data.val().box != undefined) {
+        add_config_product_BundleBox_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().bundle, data.val().box, data.val().itemcode);
       }
       break;
     case "Bag-Kgs":
-      if(data.val().bag != undefined){
-        add_config_product_BagKgs_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().bag,data.val().kgs, data.val().itemcode);
+      if (data.val().bag != undefined) {
+        add_config_product_BagKgs_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().bag, data.val().kgs, data.val().itemcode);
       }
       break;
     case "Case-Cent-Katta":
-    if(data.val().cent != undefined){
-      add_config_product_CaseCentKatta_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case, data.val().cent, data.val().katta, data.val().itemcode);
-    }
+      if (data.val().cent != undefined) {
+        add_config_product_CaseCentKatta_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case, data.val().cent, data.val().katta, data.val().itemcode);
+      }
       break;
     case "Case-Tube":
-    if(data.val().tube != undefined){
-      add_config_product_CaseTube_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case,data.val().tube, data.val().itemcode);
-    }
+      if (data.val().tube != undefined) {
+        add_config_product_CaseTube_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case, data.val().tube, data.val().itemcode);
+      }
       break;
     case "Case-Cone":
-    if(data.val().cone != undefined){
-      add_config_product_CaseCone_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case,data.val().cone, data.val().itemcode);
-    }
+      if (data.val().cone != undefined) {
+        add_config_product_CaseCone_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().case, data.val().cone, data.val().itemcode);
+      }
       break;
     case "Bag-Packets":
-    if(data.val().bag != undefined){
-      add_config_product_BagPackets_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().bag,data.val().packets, data.val().itemcode);
-    }
+      if (data.val().bag != undefined) {
+        add_config_product_BagPackets_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().bag, data.val().packets, data.val().itemcode);
+      }
       break;
     case "Bag-Pieces":
-    if(data.val().bag != undefined){
-      add_config_product_BagPieces_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().bag,data.val().pieces, data.val().itemcode);
-    }
+      if (data.val().bag != undefined) {
+        add_config_product_BagPieces_data_table(data.val().price, data.val().wholesalepercent, data.val().semiwholesalepercent, data.val().retailpercent, data.val().bag, data.val().piece, data.val().itemcode);
+      }
       break;
     default:
       console.log("No package found");
@@ -906,7 +895,6 @@ function add_config_product_BagPieces_data_table(price, wholesalepercent, semiwh
   $("#ProductConfigureTable").prepend('<tr id="' + itemcode + '"><th>' + itemcode + '</th><th>Bag : ' + bag + ' Piece : ' + piece + '</th><th>' + price + '</th><th>' + wholesalepercent + '</th><th>' + semiwholesalepercent + '</th><th>' + retailpercent + '</th></tr>');
 }
 
-
 function new_config_product_CaseBoxPiece(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, box, piece, itemcode) {
   database.ref('products/' + itemcode).update({
     itemcode: itemcode,
@@ -918,7 +906,12 @@ function new_config_product_CaseBoxPiece(price, wholesalepercent, semiwholesalep
     piece: piece,
     box: box
   });
-  //add_config_product_CaseBoxPiece_data_table(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, box, piece, itemcode);
+  database.ref('inventory/' + itemcode).set({
+    itemcode: itemcode,
+    case: "0",
+    piece: "0",
+    box: "0"
+  });
 }
 
 function new_config_product_CasePiece(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, piece, itemcode) {
@@ -931,7 +924,11 @@ function new_config_product_CasePiece(price, wholesalepercent, semiwholesaleperc
     case: caseunit,
     piece: piece
   });
-  //add_config_product_CasePiece_data_table(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, piece, itemcode);
+  database.ref('inventory/' + itemcode).set({
+    itemcode: itemcode,
+    case: "0",
+    piece: "0"
+  });
 }
 function new_config_product_CasePackets(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, packets, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -943,7 +940,11 @@ function new_config_product_CasePackets(price, wholesalepercent, semiwholesalepe
     case: caseunit,
     packets: packets
   });
-  //add_config_product_CasePackets_data_table(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, packets, itemcode);
+  database.ref('inventory/' + itemcode).set({
+    itemcode: itemcode,
+    case: "0",
+    packets: "0"
+  });
 }
 function new_config_product_CaseTin(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, tin, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -955,7 +956,11 @@ function new_config_product_CaseTin(price, wholesalepercent, semiwholesalepercen
     case: caseunit,
     tin: tin
   });
-  //add_config_product_CaseTin_data_table(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, tin, itemcode);
+  database.ref('inventory/' + itemcode).set({
+    itemcode: itemcode,
+    case: "0",
+    tin: "0"
+  });
 }
 function new_config_product_BundleKattaBox(price, wholesalepercent, semiwholesalepercent, retailpercent, bundle, katta, box, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -968,7 +973,12 @@ function new_config_product_BundleKattaBox(price, wholesalepercent, semiwholesal
     katta: katta,
     box: box
   });
-  //add_config_product_BundleKattaBox_data_table(price, wholesalepercent, semiwholesalepercent, retailpercent, bundle, katta, box, itemcode);
+  database.ref('inventory/' + itemcode).set({
+    itemcode: itemcode,
+    bundle: "0",
+    katta: "0",
+    box:"0"
+  });
 }
 function new_config_product_BundleBox(price, wholesalepercent, semiwholesalepercent, retailpercent, bundle, box, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -980,7 +990,11 @@ function new_config_product_BundleBox(price, wholesalepercent, semiwholesaleperc
     bundle: bundle,
     box: box
   });
-  //add_config_product_BundleBox_data_table(price, wholesalepercent, semiwholesalepercent, retailpercent, bundle, box, itemcode);
+  database.ref('inventory/' + itemcode).set({
+    itemcode: itemcode,
+    bundle: "0",
+    box: "0"
+  });
 }
 function new_config_product_BagKgs(price, wholesalepercent, semiwholesalepercent, retailpercent, bag, kgs, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -992,7 +1006,11 @@ function new_config_product_BagKgs(price, wholesalepercent, semiwholesalepercent
     bag: bag,
     kgs: kgs
   });
-  //add_config_product_BagKgs_data_table(price, wholesalepercent, semiwholesalepercent, retailpercent, bag, kgs, itemcode);
+  database.ref('inventory/' + itemcode).set({
+    itemcode: itemcode,
+    bag: "0",
+    kgs: "0"
+  });
 }
 function new_config_product_CaseCentKatta(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, centunit, katta, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -1005,7 +1023,12 @@ function new_config_product_CaseCentKatta(price, wholesalepercent, semiwholesale
     katta: katta,
     cent: centunit
   });
-  //add_config_product_CaseCentKatta_data_table(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, cent, katta, itemcode);
+  database.ref('inventory/' + itemcode).set({
+    itemcode: itemcode,
+    case: "0",
+    katta: "0",
+    cent:"0"
+  });
 }
 function new_config_product_CaseTube(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, tube, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -1017,10 +1040,13 @@ function new_config_product_CaseTube(price, wholesalepercent, semiwholesaleperce
     case: caseunit,
     tube: tube
   });
-  //add_config_product_CaseTube_data_table(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, tube, itemcode);
+  database.ref('inventory/' + itemcode).set({
+    itemcode: itemcode,
+    case: "0",
+    tube: "0"
+  });
 }
 function new_config_product_CaseCone(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, cone, itemcode) {
-
 
   database.ref('products/' + itemcode).update({
     itemcode: itemcode,
@@ -1031,7 +1057,11 @@ function new_config_product_CaseCone(price, wholesalepercent, semiwholesaleperce
     case: caseunit,
     cone: cone
   });
-
+  database.ref('inventory/' + itemcode).set({
+    itemcode: itemcode,
+    case: "0",
+    cone: "0"
+  });
 }
 function new_config_product_BagPackets(price, wholesalepercent, semiwholesalepercent, retailpercent, bag, packets, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -1043,7 +1073,11 @@ function new_config_product_BagPackets(price, wholesalepercent, semiwholesaleper
     bag: bag,
     packets: packets
   });
-  //add_config_product_BagPackets_data_table(price, wholesalepercent, semiwholesalepercent, retailpercent, bag, packets, itemcode);
+  database.ref('inventory/' + itemcode).set({
+    itemcode: itemcode,
+    bag: "0",
+    packets: "0"
+  });
 }
 function new_config_product_BagPieces(price, wholesalepercent, semiwholesalepercent, retailpercent, bag, piece, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -1053,9 +1087,13 @@ function new_config_product_BagPieces(price, wholesalepercent, semiwholesaleperc
     semiwholesalepercent: semiwholesalepercent,
     retailpercent: retailpercent,
     bag: bag,
-    pieces: piece
+    piece: piece
   });
-  //add_config_product_BagPieces_data_table(price, wholesalepercent, semiwholesalepercent, retailpercent, bag, piece, itemcode);
+  database.ref('inventory/' + itemcode).set({
+    itemcode: itemcode,
+    bag: "0",
+    piece: "0"
+  });
 }
 
 /** configure product logic ends here **/
