@@ -906,6 +906,7 @@ function new_config_product_CaseBoxPiece(price, wholesalepercent, semiwholesalep
     piece: piece,
     box: box
   });
+  database.ref('inventory/' + itemcode).update({itemcode: itemcode});
 }
 
 function new_config_product_CasePiece(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, piece, itemcode) {
@@ -918,6 +919,7 @@ function new_config_product_CasePiece(price, wholesalepercent, semiwholesaleperc
     case: caseunit,
     piece: piece
   });
+  database.ref('inventory/' + itemcode).update({itemcode: itemcode});
 }
 function new_config_product_CasePackets(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, packets, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -929,6 +931,7 @@ function new_config_product_CasePackets(price, wholesalepercent, semiwholesalepe
     case: caseunit,
     packets: packets
   });
+  database.ref('inventory/' + itemcode).update({itemcode: itemcode});
 }
 function new_config_product_CaseTin(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, tin, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -940,6 +943,7 @@ function new_config_product_CaseTin(price, wholesalepercent, semiwholesalepercen
     case: caseunit,
     tin: tin
   });
+  database.ref('inventory/' + itemcode).update({itemcode: itemcode});
 }
 function new_config_product_BundleKattaBox(price, wholesalepercent, semiwholesalepercent, retailpercent, bundle, katta, box, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -952,6 +956,7 @@ function new_config_product_BundleKattaBox(price, wholesalepercent, semiwholesal
     katta: katta,
     box: box
   });
+  database.ref('inventory/' + itemcode).update({itemcode: itemcode});
 }
 function new_config_product_BundleBox(price, wholesalepercent, semiwholesalepercent, retailpercent, bundle, box, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -963,6 +968,7 @@ function new_config_product_BundleBox(price, wholesalepercent, semiwholesaleperc
     bundle: bundle,
     box: box
   });
+  database.ref('inventory/' + itemcode).update({itemcode: itemcode});
 }
 function new_config_product_BagKgs(price, wholesalepercent, semiwholesalepercent, retailpercent, bag, kgs, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -974,6 +980,7 @@ function new_config_product_BagKgs(price, wholesalepercent, semiwholesalepercent
     bag: bag,
     kgs: kgs
   });
+  database.ref('inventory/' + itemcode).update({itemcode: itemcode});
 }
 function new_config_product_CaseCentKatta(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, centunit, katta, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -986,6 +993,7 @@ function new_config_product_CaseCentKatta(price, wholesalepercent, semiwholesale
     katta: katta,
     cent: centunit
   });
+  database.ref('inventory/' + itemcode).update({itemcode: itemcode});
 }
 function new_config_product_CaseTube(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, tube, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -997,6 +1005,7 @@ function new_config_product_CaseTube(price, wholesalepercent, semiwholesaleperce
     case: caseunit,
     tube: tube
   });
+  database.ref('inventory/' + itemcode).update({itemcode: itemcode});
 }
 function new_config_product_CaseCone(price, wholesalepercent, semiwholesalepercent, retailpercent, caseunit, cone, itemcode) {
 
@@ -1009,7 +1018,7 @@ function new_config_product_CaseCone(price, wholesalepercent, semiwholesaleperce
     case: caseunit,
     cone: cone
   });
-
+  database.ref('inventory/' + itemcode).update({itemcode: itemcode});
 }
 function new_config_product_BagPackets(price, wholesalepercent, semiwholesalepercent, retailpercent, bag, packets, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -1021,7 +1030,7 @@ function new_config_product_BagPackets(price, wholesalepercent, semiwholesaleper
     bag: bag,
     packets: packets
   });
-
+  database.ref('inventory/' + itemcode).update({itemcode: itemcode});
 }
 function new_config_product_BagPieces(price, wholesalepercent, semiwholesalepercent, retailpercent, bag, piece, itemcode) {
   database.ref('products/' + itemcode).update({
@@ -1033,7 +1042,175 @@ function new_config_product_BagPieces(price, wholesalepercent, semiwholesaleperc
     bag: bag,
     piece: piece
   });
-
+  database.ref('inventory/' + itemcode).update({itemcode: itemcode});
 }
-
 /** configure product logic ends here **/
+/** Add items to inventory starts here**/
+function returnCurrentUnitInInv() {
+  var itemcode = $("#itemcode").val();
+  $('#showunitsdiv').empty();
+  database.ref('products').on('child_added', function(data) {
+
+    console.log("IC "+itemcode);
+    if (data.val().itemcode == itemcode) {
+      console.log("Unt "+data.val().unit);
+      getunitconfig(data.val().unit);
+    }
+  });
+
+  if (currentunitconfig == "Case-Tin") {
+    database.ref('inventory/' + itemcode).once("value").then(function(snapshot) {
+      console.log(snapshot.val());
+      $("#showunitsdiv").append('Case: <input id="case" type="text" value="' + snapshot.val().case + '"placeholder="Case"/> Tin: <input id="tin" type="text" value="' + snapshot.val().tin + '"placeholder="Tin"/>');
+    });
+  } else if (currentunitconfig == "Case-Piece") {
+
+    $("#showunitsdiv").append('Case: <input id="case" type="text" placeholder="Case"/> Piece: <input id="piece" type="text" placeholder="Piece"/>');
+  } else if (currentunitconfig == "Case-Box-Piece") {
+    database.ref('inventory/' + itemcode).once("value").then(function(snapshot) {
+      console.log(snapshot.val());
+      $("#showunitsdiv").append('Case: <input id="case" type="text" value="' + snapshot.val().case + '"placeholder="Case"/> Box: <input id="box" type="text" value="' + snapshot.val().box + '"placeholder="Box"/> Piece: <input id="piece" type="text" value="' + snapshot.val().piece + '"placeholder="Piece"/>');
+    });
+  } else if (currentunitconfig == "Case-Packets") {
+    database.ref('inventory/' + itemcode).once("value").then(function(snapshot) {
+      console.log(snapshot.val());
+      if( !snapshot.val()) {
+        console.log("Its null yaaaa");
+      }
+      else{
+        $("#showunitsdiv").append('Case: <input id="case" type="text" value="' + snapshot.val().case + '"placeholder="Case"/> Packets: <input id="tin" type="text" value="' + snapshot.val().packets + '"placeholder="Tin"/>');
+      }
+    });
+  } else if (currentunitconfig == "Bundle-Katta-Boxes") {
+    database.ref('inventory/' + itemcode).once("value").then(function(snapshot) {
+      console.log(snapshot.val());
+      $("#showunitsdiv").append('Bundle: <input id="bundle" type="text" value="' + snapshot.val().bundle + '"placeholder="Bundle"/> Katta: <input id="katta" type="text" value="' + snapshot.val().katta + '"placeholder="Katta"/>Box: <input id="box" type="text" value="' + snapshot.val().box + '"placeholder="Box"/>');
+
+    });
+  } else if (currentunitconfig == "Bundle-Boxes") {
+    database.ref('inventory/' + itemcode).once("value").then(function(snapshot) {
+      console.log(snapshot.val());
+      $("#showunitsdiv").append('Bundle: <input id="bundle" type="text" value="' + snapshot.val().bundle + '"placeholder="Bundle"/> Box: <input id="box" type="text" value="' + snapshot.val().box + '"placeholder="Box"/>');
+
+    });
+  } else if (currentunitconfig == "Bag-Kgs") {
+    database.ref('inventory/' + itemcode).once("value").then(function(snapshot) {
+      console.log(snapshot.val());
+      $("#showunitsdiv").append('Bag: <input id="bag" type="text" value="' + snapshot.val().bag + '"placeholder="Bag"/> Kgs: <input id="kgs" type="text" value="' + snapshot.val().kgs + '"placeholder="Kgs"/>');
+    });
+  } else if (currentunitconfig == "Case-Cent-Katta") {
+    database.ref('inventory/' + itemcode).once("value").then(function(snapshot) {
+      console.log(snapshot.val());
+      $("#showunitsdiv").append('Case: <input id="case" type="text" value="' + snapshot.val().case + '"placeholder="Case"/> Cent: <input id="cent" type="text" value="' + snapshot.val().cent + '"placeholder="Cent"/> Katta: <input id="katta" type="text" value="' + snapshot.val().katta + '"placeholder="Katta"/>');
+
+    });
+  } else if (currentunitconfig == "Case-Tube") {
+    database.ref('inventory/' + itemcode).once("value").then(function(snapshot) {
+      console.log(snapshot.val());
+      $("#showunitsdiv").append('Case: <input id="case" type="text" value="' + snapshot.val().case + '"placeholder="Case"/> Tube: <input id="tube" type="text" value="' + snapshot.val().tube + '"placeholder="Tube"/>');
+
+    });
+  } else if (currentunitconfig == "Case-Cone") {
+    database.ref('inventory/' + itemcode).once("value").then(function(snapshot) {
+      console.log(snapshot.val());
+      $("#showunitsdiv").append('Case: <input id="case" type="text" value="' + snapshot.val().case + '"placeholder="Case"/> Cone: <input id="cone" type="text" value="' + snapshot.val().cone + '"placeholder="Cone"/>');
+
+    });
+  } else if (currentunitconfig == "Bag-Pieces") {
+    database.ref('inventory/' + itemcode).once("value").then(function(snapshot) {
+      console.log(snapshot.val());
+      $("#showunitsdiv").append('Bag: <input id="bag" type="text" value="' + snapshot.val().bag + '"placeholder="Bag"/> Piece: <input id="piece" type="text" value="' + snapshot.val().piece + '"placeholder="Piece"/>');
+
+    });
+  } else if (currentunitconfig == "Bag-Packets") {
+    database.ref('inventory/' + itemcode).once("value").then(function(snapshot) {
+      console.log(snapshot.val());
+      $("#showunitsdiv").append('Bag: <input id="bag" type="text" value="' + snapshot.val().bag + '"placeholder="Bag"/> Packets: <input id="packets" type="text" value="' + snapshot.val().packets + '"placeholder="Packets"/>');
+
+    });
+  } else {
+    $("#showunitsdiv").append('<h1>Issue in selection</h1>');
+  }
+  //$("#showunitsdiv").append('<h1>'+currentunitconfig+'</h1>')
+  console.log($("#itemcode").val() + " " + currentunitconfig);
+}
+$("#btnAddItems").click(function() {
+  switch (currentunitconfig) {
+    case "Case-Box-Piece":
+      add_itemToInv_CaseBoxPiece_data($("#itemcode").val(), $("#case").val(), $("#box").val(), $("#piece").val());
+      break;
+    case "Case-Piece":
+      add_itemToInv_CasePiece_data($("#itemcode").val(), $("#case").val(),$("#piece").val());
+      break;
+    case "Case-Packets":
+      add_itemToInv_CasePackets_data($("#itemcode").val(), $("#case").val(),$("#packets").val());
+      break;
+    case "Case-Tin":
+      add_itemToInv_CaseTin_data($("#itemcode").val(), $("#case").val(),$("#tin").val());
+      break;
+    case "Bundle-Katta-Boxes":
+      add_itemToInv_BundleKattaBox_data($("#itemcode").val(), $("#bundle").val(), $("#katta").val(), $("#box").val());
+      break;
+    case "Bundle-Boxes":
+      add_itemToInv_BundleBox_data($("#itemcode").val(), $("#bundle").val(),$("#box").val());
+      break;
+    case "Bag-Kgs":
+      add_itemToInv_BagKgs_data($("#itemcode").val(), $("#bag").val(),$("#kgs").val());
+      break;
+    case "Case-Cent-Katta":
+      add_itemToInv_CaseCentKatta_data($("#itemcode").val(), $("#case").val(), $("#cent").val(), $("#katta").val());
+      break;
+    case "Case-Tube":
+      add_itemToInv_CaseTube_data($("#itemcode").val(), $("#case").val(),$("#tube").val());
+      break;
+    case "Case-Cone":
+      add_itemToInv_CaseCone_data($("#itemcode").val(), $("#case").val(),$("#cone").val());
+      break;
+    case "Bag-Packets":
+      add_itemToInv_BagPackets_data($("#itemcode").val(), $("#bag").val(),$("#packets").val());break;
+    case "Bag-Pieces":
+      add_itemToInv_BagPieces_data($("#itemcode").val(), $("#bag").val(),$("#piece").val());
+      break;
+    default:
+      console.log("No package found");
+  }
+
+});
+function add_itemToInv_CaseBoxPiece_data(itemcode, caseunit, box, piece) {
+  database.ref('inventory/' + itemcode).set({itemcode: itemcode, case: caseunit, box: box, piece: piece});
+}
+function add_itemToInv_CasePiece_data(itemcode, caseunit, piece) {
+  database.ref('inventory/' + itemcode).set({itemcode: itemcode, case: caseunit, piece: piece});
+}
+function add_itemToInv_CasePackets_data(itemcode, caseunit, packets) {
+  database.ref('inventory/' + itemcode).set({itemcode: itemcode, case: caseunit, packets: packets});
+}
+function add_itemToInv_CaseTin_data(itemcode, caseunit, tin) {
+  database.ref('inventory/' + itemcode).set({itemcode: itemcode, case: caseunit, tin: tin});
+}
+function add_itemToInv_BundleKattaBox_data(itemcode, bundle, katta, box) {
+  database.ref('inventory/' + itemcode).set({itemcode: itemcode, bundle: bundle, katta: katta, box: box});
+}
+function add_itemToInv_BundleBox_data(itemcode, bundle, box) {
+  database.ref('inventory/' + itemcode).set({itemcode: itemcode, bundle: bundle, box: box});
+}
+function add_itemToInv_BagKgs_data(itemcode, bundle, kgs) {
+  database.ref('inventory/' + itemcode).set({itemcode: itemcode, bag: bag, kgs: kgs});
+}
+function add_itemToInv_CaseCentKatta_data(itemcode, caseunit, cent, katta) {
+  database.ref('inventory/' + itemcode).set({itemcode: itemcode, case: caseunit, katta: katta});
+}
+function add_itemToInv_CaseTube_data(itemcode, caseunit, tube) {
+  database.ref('inventory/' + itemcode).set({itemcode: itemcode, case: caseunit, tube: tube});
+}
+function add_itemToInv_CaseCone_data(itemcode, caseunit, cone) {
+  database.ref('inventory/' + itemcode).set({itemcode: itemcode, case: caseunit, cone: cone});
+}
+function add_itemToInv_BagPackets_data(itemcode, bag, packets) {
+  database.ref('inventory/' + itemcode).set({itemcode: itemcode, bag: bag, packets: packets});
+}
+function add_itemToInv_BagPieces_data(itemcode, bag, piece) {
+  database.ref('inventory/' + itemcode).set({itemcode: itemcode, bag: bag, piece: piece});
+}
+/**Add items to Inventory ends here**/
+//Add null cases
